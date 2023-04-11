@@ -20,52 +20,58 @@
         <table class="table table-bordered table-hover table-striped table-sm" id="tablapresupuesto" >
             <thead class="table-dark">
                 <tr>
-                    <th>Sucursal</th>
-                    <th>Desc.Sucursal</th>
-                    <th>Tipo</th>
-                    <th>Bodega</th>
+                    <th id="escondemedia">Sucursal</th>
+                    <th id="escondemedia">Desc.Sucursal</th>
+                    <th id="escondemedia">Tipo</th>
+                    <th id="escondemedia">Bodega</th>
                     <th>Almacen</th>
-                    <th>Und año anterior</th>
-                    <th>$ año anterior</th>
+                    <th id="escondemedia">Und año anterior</th>
+                    <th id="escondemedia">$ año anterior</th>
                     <th>Und</th>
                     <th>Neto</th>
                     <th>Und presupuesto</th>
                     <th>$ presupuesto</th>
                     <th>Diferencia $</th>
-                    <th>Diferencua und</th>
+                    <th id="escondemedia">Diferencua und</th>
                     <th>%</th>
-                    <th>diario</th>
+                    <th id="escondemedia">diario</th>
                 </tr>
             </thead>
             <tbody>
                 {% for d in data %}
                 <tr class="{% if d[13] < 90 %} table-danger {%endif%}">
-                    <td>{{d[2]}}</td>
-                    <td>{{d[3]}}</td>
-                    <td>{{d[4]}}</td>
-                    <td>{{d[5]}}</td>
+                    <td id="escondemedia">{{d[2]}}</td>
+                    <td id="escondemedia">{{d[3]}}</td>
+                    <td id="escondemedia">{{d[4]}}</td>
+                    <td id="escondemedia">{{d[5]}}</td>
                     <td>{{d[6]}}</td>
-                    <td>{{d[0]}}</td>
-                    <td>{{d[1]}}</td>
+                    <td id="escondemedia">{{d[0]}}</td>
+                    <td id="escondemedia">{{d[1]}}</td>
                     <td>{{d[7]}}</td>
                     <td>{{d[8]}}</td>
                     <td>{{d[9]}}</td>
                     <td>{{d[10]}}</td>
                     <td>{{d[11]}}</td>
-                    <td>{{d[12]}}</td>
-                    <td>{{d[13]}}%</td>
-                    <td>{{ d[14] }}</td>
+                    <td id="escondemedia">{{d[12]}}</td>
+                    <td id="escondemedia">{{d[13]}}%</td>
+                    <td id="escondemedia">{{d[14]}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
             <tfoot class="table-info">
                 <tr>
-                    <td colspan="5">Valores Totales En $:</td>
-                    <td colspan="2">{{valor_ano_anterior}}</td>
+                    <td colspan="1">Valores Totales En $:</td>
+                    <td colspan="1" id="escondemedia"></td>
+                    <td colspan="1" id="escondemedia"></td>
+                    <td colspan="1" id="escondemedia"></td>
+                    <td colspan="1" id="escondemedia"></td>
+                    <td colspan="2" id="escondemedia">{{valor_ano_anterior}}</td>
                     <td colspan="2">{{valor_venta}}</td>
                     <td colspan="2">{{valor_presupuesto}}</td>
-                    <td colspan="2">Porcentaje promedio:</td>
-                    <td colspan="3">{{porcentaje_promedio_venta}}%</td>
+                    <td colspan="2" id="escondemedia">Porcentaje promedio:</td>
+                    <td colspan="1">{{porcentaje_promedio_venta}}%</td>
+                    <td colspan="1" id="escondemedia"></td>
+                    <td colspan="1" id="escondemedia"></td>
                 </tr>
             </tfoot>
         </table>

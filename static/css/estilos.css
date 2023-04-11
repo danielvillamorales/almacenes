@@ -184,6 +184,7 @@ pagina para presupuestos es la pagina encargada de mostrar el presuspuesto de la
 #tablapresupuesto tbody tr td:nth-child(n+6){
     text-align: right;
 }
+
 /*-----------------------------------------------------------------------------------
 -------------------estilos para html de ventas por Fechas -------------------------
 -----------------------------------------------------------------------------------
@@ -240,8 +241,11 @@ pagina para presupuestos es la pagina encargada de mostrar el presuspuesto de la
     font-size: 20px;
     color: white;
 }
+/***********************************************************
+media query para la pagina de ventas por fechas
+*/
 
-@media (min-width: 0px) and (max-width: 500px) { 
+@media (min-width: 0px) and (max-width: 700px) { 
 
     #divcharund{
         top:2%;
@@ -278,6 +282,10 @@ pagina para presupuestos es la pagina encargada de mostrar el presuspuesto de la
         background-color:#000e3b;
         font-size: 14px;
         color: white;
+    }
+
+    #escondemedia{
+        display: none;
     }
 }
 
