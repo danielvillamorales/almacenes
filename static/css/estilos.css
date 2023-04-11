@@ -177,7 +177,7 @@ pagina para presupuestos es la pagina encargada de mostrar el presuspuesto de la
 }
 
 #tablapresupuesto{
-    font-size: 15px;
+    font-size: 11px;
     height: 90%;
 }
 
@@ -261,8 +261,8 @@ pagina para presupuestos es la pagina encargada de mostrar el presuspuesto de la
         font-weight: bold;
     }
 
-    #tablelmacenes,#tablezonas{
-        font-size:11px;
+    #tablelmacenes,#tablezonas, #tablapresupuesto{
+        font-size:8px;
     }
 
     #nav-test div ul li{
