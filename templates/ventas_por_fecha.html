@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="{{ url_for('ventasporfecha') }}" method="POST">
+    <div class="input-group input-group-sm mb-3 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="divbusquedavf">
+        <input type="Date" class="form-control" value="{{fecha_inicial}}" placeholder="Fecha Inicial" name="Fecha_Inicial" id="Fecha_Inicial" aria-label="Fecha inicial">
+        <span class="input-group-text">&</span>
+        <input type="Date" class="form-control"  value="{{fecha_final}}" placeholder="Fecha Final" name="Fecha_Final" name="Fecha_Final" aria-label="Fecha Final">
+        <button class="btn btn-secondary" type="Submit">Buscar</button>
+    </div>
+</form>
+<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-2 col-sm-12 col-12">
+</div>
+<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-8 col-sm-12 col-12" id="divcanventasfechas">
+    <canvas id="myChart4" height="60" width="100"></canvas>
+</div>
+<div class="col-xxl-3 col-xl-3 col-lg-3 col-md-2 col-sm-12 col-12">
+</div>
+<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="table" id="divtablaventasfecha">
+        <table class="table table-bordered table-hover table-striped table-sm" id="tablaventasfecha" >
+            <thead class="table-dark">
+                <tr>
+                    <th>Almacen</th>
+                    <th>Valor Neto</th>
+                    <th>Cantidad</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in data %}
+                <tr>
+                    <td>{{d[0]}}</td>
+                    <td>{{d[1]}}</td>
+                    <td>{{d[2]}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const ctx4 = document.getElementById('myChart4').getContext('2d');
+    const myChart4 = new Chart(ctx4, {
+        type: 'doughnut',
+        data: {
+            labels: [
+            {% for a,b,c,d,e in data%}
+                {%if a !='Total'%}
+                    '{{a}}',
+                {% endif %}
+            {%endfor%}
+            ],
+            datasets: [{
+                label: '$Neto',
+                data: [            
+                {% for a,b,c,d,e in data%} 
+                    {% if a != 'Total' %}
+                        {{d}},
+                    {% endif %}
+                {%endfor%}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)',
+                'rgba(164, 108, 73,0.5)',
+                'rgba(148, 164, 73 ,0.5)',
+                'rgba(175, 75, 182 ,0.5)',
+                'rgba(232, 20, 117,0.5)',
+                'rgba(140, 140, 140 ,0.5)',
+                'rgba(0, 150, 136,0.5)',
+                'rgba(26, 35, 126,0.5)',
+                'rgba(173, 20, 87,0.5)',
+                'rgba(209, 196, 233,0.5)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(164, 108, 73,1)',
+                'rgba(148, 164, 73 ,1)',
+                'rgba(175, 75, 182 ,1)',
+                'rgba(232, 20, 117,1)',
+                'rgba(140, 140, 140 ,1)',
+                'rgba(0, 150, 136,1)',
+                'rgba(26, 35, 126,1)',
+                'rgba(173, 20, 87,1)',
+                'rgba(209, 196, 233,1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+    options:{
+        plugins: {
+            legend: {
+                hidden: false,
+                display: true,
+                position: 'left',
+                labels: {
+                    color: 'rgb(255, 99, 132)'
+                }
+            },
+            title: {
+                display: true,
+                text: 'Ventas Netas Por Fechas',
+            }
+        }
+    },
+    });
+</script>
+{%endblock%}

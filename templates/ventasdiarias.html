@@ -1,0 +1,340 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 " id="divprimary1">
+    <div class="container-fluid" id="divcharventas">
+        <canvas id="myChart" height="100" width="100"></canvas>
+    </div>
+</div>
+<div class="col-xxl-6 col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 " id="divprimary2">
+    <div class="container-fluid" id="divcharund">
+        <canvas id="myChart2" height="100" width="100"></canvas>
+    </div>
+</div>
+<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 " id="divprimary3" hidden>
+    <div class="container-fluid" id="divcharzona" >
+        <canvas id="myChart3" height="35" width="100"></canvas>
+    </div>
+</div>
+<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+    <div class="" id="divvalores">
+        <ul>
+            <li>
+                <div>
+                    <p id="titulo"><b>Und:</b></p><p id="valor">{{valores[0][0]}}</p>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <p id="titulo"><b>Bruto:</b></p><p id="valor">{{valores[0][1]}}</p>
+                </div>
+            </li>
+            <li>
+                <div>
+                    <p id="titulo"><b>Neto:</b></p><p id="valor">{{valores[0][2]}}</p>
+                </div>
+            </li>
+        </ul>    
+    </div>
+    <div id="divtable">
+        <div class="botones" id="divbuttons">
+            <ul>
+                <li class="btn btn-outline-primary" onclick="activarAlmacenes();">Ver Almacenes</li>
+                <li class="btn btn-outline-primary" onclick="activarZonas();">Ver Zonas</li>
+            </ul>
+        </div>
+        <table class="table container-fluid table-sm table-bordered table-striped" id="tablelmacenes">
+            <thead class="table-dark">
+                <tr>
+                    <td><b>Almacen</b></td>
+                    <td style="text-align:center;"><b>Cantidad</b></td>
+                    <td style="text-align:center;"><b>Valor Con Iva</b></td>
+                    <td style="text-align:center;"><b>Neto</b></td>
+                </tr>
+            </thead>
+            {% for v in ventas_diarias %}
+                <tr>
+                    <td>{{v[1]}}</td>
+                    <td style="text-align:right;">{{v[2]}}</td>
+                    <td style="text-align:right;">{{v[3]}}</td>
+                    <td style="text-align:right;">{{v[4]}}</td>
+                </tr>
+            {%endfor %}
+        </table>
+        <table class="table container-fluid table-sm table-bordered table-striped " id="tablezonas" hidden>
+            <thead class="table-primary">
+                <tr>
+                    <td><b>Zona</b></td>
+                    <td style="text-align:center;"><b>Cantidad</b></td>
+                    <td style="text-align:center;"><b>Valor Con Iva</b></td>
+                    <td style="text-align:center;"><b>Neto</b></td>
+                </tr>
+            </thead>
+            {% for z in zonas %}
+                <tr>
+                    <td>{{z[0]}}</td>
+                    <td style="text-align:right;">{{z[1]}}</td>
+                    <td style="text-align:right;">{{z[2]}}</td>
+                    <td style="text-align:right;">{{z[3]}}</td>
+                </tr>
+            {%endfor %}
+        </table>
+    </div>    
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            axis:'y',
+            labels: [
+            {% for v in ventas_diarias%}
+                '{{v[1]}}',
+            {%endfor%}
+            ],
+            datasets: [{
+                data: [            
+                {% for v in ventas_diarias%}
+                    {{v[5]}},
+                {%endfor%}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)',
+                'rgba(164, 108, 73,0.5)',
+                'rgba(148, 164, 73 ,0.5)',
+                'rgba(175, 75, 182 ,0.5)',
+                'rgba(232, 20, 117,0.5)',
+                'rgba(140, 140, 140 ,0.5)',
+                'rgba(0, 150, 136,0.5)',
+                'rgba(26, 35, 126,0.5)',
+                'rgba(173, 20, 87,0.5)',
+                'rgba(209, 196, 233,0.5)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(164, 108, 73,1)',
+                'rgba(148, 164, 73 ,1)',
+                'rgba(175, 75, 182 ,1)',
+                'rgba(232, 20, 117,1)',
+                'rgba(140, 140, 140 ,1)',
+                'rgba(0, 150, 136,1)',
+                'rgba(26, 35, 126,1)',
+                'rgba(173, 20, 87,1)',
+                'rgba(209, 196, 233,1)'
+                ],
+                borderWidth: 1,
+                hoverOffset: 1
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero:true
+                    }
+                }],
+                yAxes: [{
+                    ticks: {
+                        fontSize: 40
+                    }
+                }],
+                y: {
+                    beginAtZero: true,
+                },
+            },
+            plugins: {
+                legend: {
+                    display: false,
+                    labels: {
+                        color: 'rgb(255, 99, 132)',
+                    }
+                },
+                title: {
+                    display: true,
+                    text: 'Neto Vendido',
+                    fontSize:18
+                }
+            }
+        }
+    });
+</script>
+
+<script>
+    const ctx2 = document.getElementById('myChart2').getContext('2d');
+    const myChart2 = new Chart(ctx2, {
+        type: 'polarArea',
+        data: {
+            labels: [
+            {% for v in ventas_diarias%}
+                '{{v[1]}}',
+            {%endfor%}
+            ],
+            datasets: [{
+                label: '# Und:',
+                data: [            
+                {% for v in ventas_diarias%}
+                    {{v[2]}},
+                {%endfor%}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)',
+                'rgba(164, 108, 73,0.5)',
+                'rgba(148, 164, 73 ,0.5)',
+                'rgba(175, 75, 182 ,0.5)',
+                'rgba(232, 20, 117,0.5)',
+                'rgba(140, 140, 140 ,0.5)',
+                'rgba(0, 150, 136,0.5)',
+                'rgba(26, 35, 126,0.5)',
+                'rgba(173, 20, 87,0.5)',
+                'rgba(209, 196, 233,0.5)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(164, 108, 73,1)',
+                'rgba(148, 164, 73 ,1)',
+                'rgba(175, 75, 182 ,1)',
+                'rgba(232, 20, 117,1)',
+                'rgba(140, 140, 140 ,1)',
+                'rgba(0, 150, 136,1)',
+                'rgba(26, 35, 126,1)',
+                'rgba(173, 20, 87,1)',
+                'rgba(209, 196, 233,1)'
+                ],
+                borderWidth: 1,
+                hoverOffset: 10
+            }]
+        },
+    options:{
+        plugins: {
+            legend: {
+                hidden: true,
+                display: false,
+                labels: {
+                    color: 'rgb(255, 99, 132)'
+                }
+            },
+            title: {
+                display: true,
+                text: 'Unidades Vendidas'
+            }
+        }
+    },
+    });
+</script>
+
+<script>
+    const ctx3 = document.getElementById('myChart3').getContext('2d');
+    const myChart3 = new Chart(ctx3, {
+        type: 'line',
+        data: {
+            labels: [
+            {% for z in zonas%}
+                '{{z[0]}}',
+            {%endfor%}
+            ],
+            datasets: [{
+                label: '$Neto',
+                data: [            
+                {% for z in zonas%}
+                    {{z[4]}},
+                {%endfor%}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)',
+                'rgba(164, 108, 73,0.5)',
+                'rgba(148, 164, 73 ,0.5)',
+                'rgba(175, 75, 182 ,0.5)',
+                'rgba(232, 20, 117,0.5)',
+                'rgba(140, 140, 140 ,0.5)',
+                'rgba(0, 150, 136,0.5)',
+                'rgba(26, 35, 126,0.5)',
+                'rgba(173, 20, 87,0.5)',
+                'rgba(209, 196, 233,0.5)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(164, 108, 73,1)',
+                'rgba(148, 164, 73 ,1)',
+                'rgba(175, 75, 182 ,1)',
+                'rgba(232, 20, 117,1)',
+                'rgba(140, 140, 140 ,1)',
+                'rgba(0, 150, 136,1)',
+                'rgba(26, 35, 126,1)',
+                'rgba(173, 20, 87,1)',
+                'rgba(209, 196, 233,1)'
+                ],
+                borderWidth: 1,
+                hoverOffset: 10,
+                pointStyle: 'triangle',
+                pointRadius: 10,
+                pointHoverRadius: 20
+            }]
+        },
+    options:{
+        plugins: {
+            legend: {
+                hidden: true,
+                display: false,
+                labels: {
+                    color: 'rgb(255, 99, 132)'
+                }
+            },
+            title: {
+                display: true,
+                text: 'Ventas Netas Por Zona Vendidas',
+            }
+        }
+    },
+    });
+</script>
+
+<script>
+function activarZonas(){
+    document.getElementById("tablelmacenes").hidden = true;
+    document.getElementById("tablezonas").hidden = false ;
+    document.getElementById("divprimary3").hidden=false;
+    document.getElementById("divprimary2").hidden=true;
+    document.getElementById("divprimary1").hidden=true;
+};
+
+function activarAlmacenes(){
+    document.getElementById("tablelmacenes").hidden = false;
+    document.getElementById("tablezonas").hidden = true ;
+    document.getElementById("divprimary3").hidden=true;
+    document.getElementById("divprimary2").hidden=false;
+    document.getElementById("divprimary1").hidden=false;
+}
+</script>
+     
+{% endblock %}

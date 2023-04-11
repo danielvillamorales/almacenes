@@ -1,0 +1,340 @@
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+body {
+  margin: 0;
+  font-family: "Roboto", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  background: linear-gradient(-45deg,#001d49 ,#295997 , #3bbdec, #51f1cc);
+  background-size: 400% 400%;
+  animation: gradient 10s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+      background-position: 0% 50%;
+  }
+  50% {
+      background-position: 100% 50%;
+  }
+  100% {
+      background-position: 0% 50%;
+  }
+}
+
+#nav-test div{
+    position: relative;
+    background-color: rgb(248, 248, 248);
+    vertical-align: middle;
+    padding:0.1px;
+    text-align:center;
+}
+
+#nav-test div ul li{
+    vertical-align: middle;
+    display: inline;
+    padding:2px;
+    margin-left: 2%;
+}
+#nav-test div ul li:nth-child(1){
+    border-bottom: 2px solid  #803bc0;
+}
+#nav-test div ul li:nth-child(2){
+    border-bottom: 2px solid  #c50a61;
+}
+#nav-test div ul li:nth-child(3){
+    border-bottom: 2px solid  #2ff398;
+}
+#nav-test div ul li:nth-child(4){
+    border-bottom: 2px solid  #27c6f7;
+}
+#nav-test div ul li:hover{
+    background-color:rgb(206, 127, 189);
+}
+#nav-test div ul li a,#nav-test div ul li a:visited {
+    color:rgb(43, 43, 43);
+    font-weight: bold;
+    text-decoration:none;
+}
+#nav-test div ul li {
+    vertical-align: middle;
+    display: inline;
+    margin-left: 2%;
+}
+
+#divbuttons{
+    position: relative;
+}
+
+#divbuttons ul li{
+    position: relative;
+    display:inline;
+    background-color:white;
+    color:#041f69;
+    border-color: #041a61;
+    box-shadow: 2px 2px 10px 2px rgb(61, 136, 223);
+    font-weight: bold;
+    opacity: 0.9;
+}
+
+#divbuttons ul li:hover{
+    background-color:rgb(223, 198, 233);
+    color:#690469;
+    border-color: #3f0041;
+    box-shadow: 2px 2px 10px 2px rgb(61, 136, 223);
+    font-weight: bold;
+    opacity: 1;
+}
+
+#divprimary1,#divprimary2,#divprimary3{
+    align-items: center;
+    align-content: center;
+    text-align: center;
+}
+
+#divcharventas,#divcharund,#divcharzona{
+    position: relative;
+    top:1%;
+    background-color:rgb(255, 255, 255);
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 5px 5px 10px 5px rgb(61, 136, 223);
+}
+
+#divvalores{
+    position: relative;
+    top:3%;
+    align-items: center;
+    align-content: center;
+    text-align:center;
+}
+
+#divvalores ul{
+    position:relative;
+    display:inline;
+}
+#divvalores ul li{
+    position: relative;
+    display:inline;
+    margin-left:10px;
+    margin-right:10px;
+    border-radius: 20px 20px 20px 20px;
+    background-color:rgb(255, 255, 255);
+    border: 4px outset #0997aa;
+    font-size: 25px;
+    box-shadow: 15px 15px 15px -15px rgb(61, 136, 223);
+    padding: 5px;
+}
+
+#divvalores ul li div{
+    position: relative;
+    display:inline;
+}
+
+#divvalores ul li div p{
+    position:relative;
+    display:inline;
+}
+
+#titulo{
+    font-size: 9px;
+    text-overflow: inherit;
+}
+
+#myChart , #myChart2{
+    font-size: 9px;
+}
+
+#divtable{
+    position: relative;
+    background-color: rgb(255, 255, 255);
+    top:5%;
+    align-content: center;
+    align-items: center;
+    padding:2%;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow: 5px 5px 15px 5px rgb(61, 136, 223);
+}
+
+#tablelmacenes, #tablezona{
+    width: 95%;
+    border-radius: 20px 20px 20px 20px;
+}
+
+tfoot tr td{
+    font-weight: bold;
+    position: relative;
+    text-align: end;
+}
+
+/*---------------------------------------------------------------------------------------
+pagina para presupuestos es la pagina encargada de mostrar el presuspuesto de la compañia
+---------------------------------------------------------------------------------------*/
+
+#divtablapresupuesto{
+    background-color: white;
+    overflow: scroll;
+    align-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+#tablapresupuesto{
+    font-size: 15px;
+    height: 90%;
+}
+
+#tablapresupuesto tbody tr td:nth-child(n+6){
+    text-align: right;
+}
+/*-----------------------------------------------------------------------------------
+-------------------estilos para html de ventas por Fechas -------------------------
+-----------------------------------------------------------------------------------
+*/
+#divbusquedavf{
+    position:relative;
+    top:1vh;
+}
+
+#divcanventasfechas{
+    position: relative;
+    background-color: white;
+    border-radius: 20px 20px 20px 20px;
+    border: 4px outset rgb(40, 92, 189);
+    box-shadow: 5px 5px 15px 2px rgb(47, 102, 206);
+}
+
+#divtablaventasfecha{
+    position:relative;
+    top: 1vh;
+    background-color: white;
+    border-radius: 20px 20px 20px 20px;
+    box-shadow:  0 0 10px 2px rgb(47, 102, 206);
+    align-content: center;
+    align-items: center;
+    align-self: center;
+}
+
+#divcharpresupuesto{
+    background-color: white;
+    font-size: 9px;
+}
+
+#myChart5{
+    font-size: 9px;
+}
+
+#tablaventasfecha{
+    background-color: white;
+    align-items: center;
+    align-content: center;
+    text-align: left;
+    font-size: 14px;
+}
+#tablaventasfecha tbody tr td:nth-child(2){
+    text-align: right;
+}
+#tablaventasfecha tbody tr td:nth-child(3){
+    text-align: right;
+}
+
+#tablaventasfecha tbody tr:nth-last-child(1){
+    background-color:#000e3b;
+    font-size: 20px;
+    color: white;
+}
+
+@media (min-width: 0px) and (max-width: 500px) { 
+
+    #divcharund{
+        top:2%;
+    }
+    #divvalores ul li{
+        padding: 0px;
+        vertical-align: middle;
+    }
+    
+    #titulo{
+        display: none;
+        font-size: 0px;
+    } 
+    #valor{
+        vertical-align: middle;
+        font-size: 14px;
+        font-weight: bold;
+    }
+
+    #tablelmacenes,#tablezonas{
+        font-size:11px;
+    }
+
+    #nav-test div ul li{
+        padding:0%;
+    }
+    #nav-test div ul li a,#nav-test div ul li a:visited {
+        font-size:11px;
+    }
+    #tablaventasfecha{
+        font-size: 11px;
+    }
+    #tablaventasfecha tbody tr:nth-last-child(1){
+        background-color:#000e3b;
+        font-size: 14px;
+        color: white;
+    }
+}
+
+/*************************************************************************
+pagina para cargar mientras carga la pagina
+**************************************************************************/
+
+.loader-page {
+    position: fixed;
+    z-index: 25000;
+    background: rgb(255, 255, 255);
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition:all .3s ease;
+  }
+  .loader-page::before {
+    content: "";
+    position: absolute;
+    border: 2px solid rgb(50, 150, 176);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border-left: 2px solid rgba(50, 150, 176,0);
+    border-top: 2px solid rgba(50, 150, 176,0);
+    animation: rotarload 1s linear infinite;
+    transform: rotate(0deg);
+  }
+  @keyframes rotarload {
+      0%   {transform: rotate(0deg)}
+      100% {transform: rotate(360deg)}
+  }
+  .loader-page::after {
+    content: "";
+    position: absolute;
+    border: 2px solid rgba(50, 150, 176,.5);
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    border-left: 2px solid rgba(50, 150, 176, 0);
+    border-top: 2px solid rgba(50, 150, 176, 0);
+    animation: rotarload 1s ease-out infinite;
+    transform: rotate(0deg);
+  }
+
+  /*************************************************************************
+estilos para pagina por dias
+**************************************************************************/
+#tabladia{
+    border-radius: 20px;
+    font-size: 11px;
+    height: 90%;
+    text-align: right;
+}

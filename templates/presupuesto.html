@@ -1,0 +1,215 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="{{ url_for('presupuesto') }}" method="POST">
+    <div class="input-group input-group-sm mb-3 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="divbusquedavf">
+        <input required type="number" class="form-control" placeholder="Año" name="anio" id="anio" aria-label="anio">
+        <span class="input-group-text">:</span>
+        <input required  type="number" class="form-control"  placeholder="Mes Inicial" name="mes1" name="mes1" aria-label="mes1">
+        <span class="input-group-text">&</span>
+        <input required type="number" class="form-control"  placeholder="Mes Final" name="mes2" name="mes2" aria-label="mes2">
+        <button class="btn btn-secondary" type="Submit">Buscar</button>
+    </div>
+</form>
+<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class="container-fluid" id="divcharpresupuesto">
+        <canvas id="myChart5" height="45" width="100"></canvas>
+    </div>
+</div>
+<div class="col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+    <div class=" container-fluid " id="divtablapresupuesto">
+        <table class="table table-bordered table-hover table-striped table-sm" id="tablapresupuesto" >
+            <thead class="table-dark">
+                <tr>
+                    <th>Sucursal</th>
+                    <th>Desc.Sucursal</th>
+                    <th>Tipo</th>
+                    <th>Bodega</th>
+                    <th>Almacen</th>
+                    <th>Und año anterior</th>
+                    <th>$ año anterior</th>
+                    <th>Und</th>
+                    <th>Neto</th>
+                    <th>Und presupuesto</th>
+                    <th>$ presupuesto</th>
+                    <th>Diferencia $</th>
+                    <th>Diferencua und</th>
+                    <th>%</th>
+                    <th>diario</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for d in data %}
+                <tr class="{% if d[13] < 90 %} table-danger {%endif%}">
+                    <td>{{d[2]}}</td>
+                    <td>{{d[3]}}</td>
+                    <td>{{d[4]}}</td>
+                    <td>{{d[5]}}</td>
+                    <td>{{d[6]}}</td>
+                    <td>{{d[0]}}</td>
+                    <td>{{d[1]}}</td>
+                    <td>{{d[7]}}</td>
+                    <td>{{d[8]}}</td>
+                    <td>{{d[9]}}</td>
+                    <td>{{d[10]}}</td>
+                    <td>{{d[11]}}</td>
+                    <td>{{d[12]}}</td>
+                    <td>{{d[13]}}%</td>
+                    <td>{{ d[14] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+            <tfoot class="table-info">
+                <tr>
+                    <td colspan="5">Valores Totales En $:</td>
+                    <td colspan="2">{{valor_ano_anterior}}</td>
+                    <td colspan="2">{{valor_venta}}</td>
+                    <td colspan="2">{{valor_presupuesto}}</td>
+                    <td colspan="2">Porcentaje promedio:</td>
+                    <td colspan="3">{{porcentaje_promedio_venta}}%</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block scripts %}
+<script>
+    const ctx5 = document.getElementById('myChart5').getContext('2d');
+    const myChart5 = new Chart(ctx5, {
+        type: 'line',
+        data: {
+            labels: [
+            {% for z in data%}
+                '{{z[6]}}',
+            {%endfor%}
+            ],
+            datasets: [{
+                label: '$Neto',
+                data: [            
+                {% for z in data%}
+                    {{z[16]}},
+                {%endfor%}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)',
+                'rgba(164, 108, 73,0.5)',
+                'rgba(148, 164, 73 ,0.5)',
+                'rgba(175, 75, 182 ,0.5)',
+                'rgba(232, 20, 117,0.5)',
+                'rgba(140, 140, 140 ,0.5)',
+                'rgba(0, 150, 136,0.5)',
+                'rgba(26, 35, 126,0.5)',
+                'rgba(173, 20, 87,0.5)',
+                'rgba(209, 196, 233,0.5)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(164, 108, 73,1)',
+                'rgba(148, 164, 73 ,1)',
+                'rgba(175, 75, 182 ,1)',
+                'rgba(232, 20, 117,1)',
+                'rgba(140, 140, 140 ,1)',
+                'rgba(0, 150, 136,1)',
+                'rgba(26, 35, 126,1)',
+                'rgba(173, 20, 87,1)',
+                'rgba(209, 196, 233,1)'
+                ],
+                borderWidth: 1,
+                hoverOffset: 5,
+                pointStyle: 'circle',
+                pointRadius: 5,
+                pointHoverRadius: 10
+            },
+            {
+                label: '$Presupuesto',
+                data: [            
+                {% for z in data%}
+                    {{z[15]}},
+                {%endfor%}],
+                backgroundColor: [
+                'rgba(255, 99, 132, 0.5)',
+                'rgba(54, 162, 235, 0.5)',
+                'rgba(255, 206, 86, 0.5)',
+                'rgba(75, 192, 192, 0.5)',
+                'rgba(153, 102, 255, 0.5)',
+                'rgba(255, 159, 64, 0.5)',
+                'rgba(164, 108, 73,0.5)',
+                'rgba(148, 164, 73 ,0.5)',
+                'rgba(175, 75, 182 ,0.5)',
+                'rgba(232, 20, 117,0.5)',
+                'rgba(140, 140, 140 ,0.5)',
+                'rgba(0, 150, 136,0.5)',
+                'rgba(26, 35, 126,0.5)',
+                'rgba(173, 20, 87,0.5)',
+                'rgba(209, 196, 233,0.5)'
+                ],
+                borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(164, 108, 73,1)',
+                'rgba(148, 164, 73 ,1)',
+                'rgba(175, 75, 182 ,1)',
+                'rgba(232, 20, 117,1)',
+                'rgba(140, 140, 140 ,1)',
+                'rgba(0, 150, 136,1)',
+                'rgba(26, 35, 126,1)',
+                'rgba(173, 20, 87,1)',
+                'rgba(209, 196, 233,1)'
+                ],
+                borderWidth: 1,
+                hoverOffset: 5,
+                pointStyle: 'triangle',
+                pointRadius: 5,
+                pointHoverRadius: 10
+            }
+            ]
+        },
+    options:{
+        animations: {
+            tension: {
+                duration: 5000,
+                easing: 'linear',
+                from: 1,
+                to: 0,
+                loop: true
+            }
+        },
+        scales: {
+            xAxes: [{
+                ticks: {
+                    fontSize: 40
+                }
+            }]
+        },
+        plugins: {
+            legend: {
+                hidden: true,
+                display: false,
+                labels: {
+                    color: 'rgb(255, 99, 132)'
+                }
+            },
+            title: {
+                display: true,
+                text: 'Ventas Netas Por Zona Vendidas',
+            }
+        }
+    },
+    });
+</script>
+{%endblock%}

@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="col-xxl- col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
+    <form action="{{ url_for('ventaspordia') }}" method="POST">
+        <div class="input-group input-group-sm mb-3 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="divbusquedavf">
+            <input required type="number" class="form-control" placeholder="Año" name="anio" id="anio" aria-label="anio">
+            <span class="input-group-text">:</span>
+            <input required  type="number" class="form-control"  placeholder="Mes" name="mes" name="mes" aria-label="mes">
+            <button class="btn btn-secondary" type="Submit">Buscar</button>
+        </div>
+    </form>
+    <div class=" container-fluid " id="divtablapresupuesto">
+        <table  class="table container-fluid table-sm table-bordered table-striped" id="tabladia">
+            <thead class="table-primary">
+                <tr>
+                    <th>Día</th>
+                    <th>Día Semana</th>
+                    <th>E-commerce</th>
+                    <th>Llano Grande</th>
+                    <th>Cafam</th>
+                    <th>Plaza Americas</th>
+                    <th>Unicentro Palmira</th>
+                    <th>Plaza Central</th>
+                    <th>Punto de Venta Frabrica</th>
+                    <th>Outlet Dosquebradas</th>
+                    <th>Obelisco</th>
+                    <th>Pasto</th>
+                    <th>Outlet Bogota</th>
+                    <th>Carpa</th>
+                    <th>Whatsapp</th>
+                    <th>Tulua</th>
+                    <th>Septima</th>
+                </tr>
+            </thead>
+            <tbody >
+                {% for d in data %}
+                <tr>
+                    <td>{{d.dia}}</td>
+                    <td>{{d.diasemana}}</td>
+                    <td>{{d.ecommerce | currency}} </td>
+                    <td>{{d.llano | currency}}</td>
+                    <td>{{d.cafam | currency}}</td>
+                    <td>{{d.plazaamericas | currency}}</td>
+                    <td>{{d.unicentropalmira | currency}}</td>
+                    <td>{{d.plazacentral | currency}}</td>
+                    <td>{{d.almacen| currency}}</td>
+                    <td>{{d.outlet | currency}}</td>
+                    <td>{{d.obelisco | currency}}</td>
+                    <td>{{d.pasto | currency}}</td>
+                    <td>{{d.outletbog | currency}}</td>
+                    <td>{{d.carpa | currency}}</td>
+                    <td>{{d.wp | currency}}</td>
+                    <td>{{d.tulua | currency}}</td>
+                    <td>{{d.septima | currency}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+            <tfoot class="table-info">
+                <tr>
+                    <td colspan="2">TOTALES DEL MES:</td>
+                    <td>{{totals.ecommerce | currency}}</td>
+                    <td>{{totals.llano | currency}}</td>
+                    <td>{{totals.cafam | currency}}</td>
+                    <td>{{totals.plazaamericas | currency}}</td>
+                    <td>{{totals.unicentropalmira | currency}}</td>
+                    <td>{{totals.plazacentral | currency}}</td>
+                    <td>{{totals.almacen| currency}}</td>
+                    <td>{{totals.outlet | currency}}</td>
+                    <td>{{totals.obelisco | currency}}</td>
+                    <td>{{totals.pasto | currency}}</td>
+                    <td>{{totals.outletbog | currency}}</td>
+                    <td>{{totals.carpa | currency}}</td>
+                    <td>{{totals.wp | currency}}</td>
+                    <td>{{totals.tulua | currency}}</td>
+                    <td>{{totals.septima | currency}}</td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+     
+{% endblock %}
+
