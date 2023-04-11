@@ -53,25 +53,23 @@
                     <td>{{d[10]}}</td>
                     <td>{{d[11]}}</td>
                     <td id="escondemedia">{{d[12]}}</td>
-                    <td id="escondemedia">{{d[13]}}%</td>
+                    <td>{{d[13]}}%</td>
                     <td id="escondemedia">{{d[14]}}</td>
                 </tr>
                 {% endfor %}
             </tbody>
             <tfoot class="table-info">
                 <tr>
-                    <td colspan="1">Totales:</td>
+                    <td colspan="1">Totales en Pesos:</td>
                     <td colspan="1" id="escondemedia"></td>
                     <td colspan="1" id="escondemedia"></td>
                     <td colspan="1" id="escondemedia"></td>
                     <td colspan="1" id="escondemedia"></td>
-                    <td colspan="2" id="escondemedia">{{valor_ano_anterior}}</td>
-                    <td colspan="2">{{valor_venta}}</td>
-                    <td colspan="2">{{valor_presupuesto}}</td>
+                    <td colspan="2" id="escondemedia">S {{valor_ano_anterior}}</td>
+                    <td colspan="2">$ {{valor_venta}}</td>
+                    <td colspan="2">$ {{valor_presupuesto}}</td>
                     <td colspan="2" id="escondemedia">Porcentaje promedio:</td>
-                    <td colspan="1">{{porcentaje_promedio_venta}}%</td>
-                    <td colspan="1" id="escondemedia"></td>
-                    <td colspan="1" id="escondemedia"></td>
+                    <td colspan="2">{{porcentaje_promedio_venta}}%</td>
                 </tr>
             </tfoot>
         </table>
