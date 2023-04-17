@@ -193,7 +193,7 @@ def ventasconnombredia(mes, anio):
 app = Flask(__name__)
 
 # Set the default locale to 'en_US'
-locale.setlocale(locale.LC_ALL, 'es_CO.UTF-8')
+locale.setlocale(locale.LC_ALL, 'es_ES.UTF-8')
 
 # Define the 'currency' filter
 @app.template_filter('currency')
@@ -227,8 +227,7 @@ def presupuesto():
             valor_presupuesto += d[15]
             valor_venta += d[16]
             valor_ano_anterior += d[17] if d[17] else 0
-            porcentaje_promedio_venta += d[13]
-        porcentaje_promedio_venta = porcentaje_promedio_venta / len(data)
+        porcentaje_promedio_venta = round(valor_venta / valor_presupuesto if valor_presupuesto > 0 else 1,4)*100
         valor_ano_anterior_str= "{:,}".format(valor_ano_anterior) if str(valor_ano_anterior) != 'None' else 0
         valor_presupuesto_str= "{:,}".format(valor_presupuesto) if str(valor_presupuesto) != 'None' else 0
         valor_venta_str= "{:,}".format(valor_venta) if str(valor_venta) != 'None' else 0
