@@ -3,15 +3,17 @@
 
 <div class="col-xxl- col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 ">
     <form action="{{ url_for('ventaspordia') }}" method="POST">
-        <div class="input-group input-group-sm mb-3 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12" id="divbusquedavf">
-            <input required type="number" class="form-control" placeholder="Año" name="anio" id="anio" aria-label="anio">
+        <div class="input-group input-group-sm mb-3 col-xxl-12 col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12"
+            id="divbusquedavf">
+            <input required type="number" class="form-control" placeholder="Año" name="anio" id="anio"
+                aria-label="anio">
             <span class="input-group-text">:</span>
-            <input required  type="number" class="form-control"  placeholder="Mes" name="mes" name="mes" aria-label="mes">
+            <input required type="number" class="form-control" placeholder="Mes" name="mes" name="mes" aria-label="mes">
             <button class="btn btn-secondary" type="Submit">Buscar</button>
         </div>
     </form>
     <div class=" container-fluid " id="divtablapresupuesto">
-        <table  class="table container-fluid table-sm table-bordered table-striped" id="tabladia">
+        <table class="table container-fluid table-sm table-bordered table-striped" id="tabladia">
             <thead class="table-primary">
                 <tr>
                     <th>Día</th>
@@ -31,9 +33,11 @@
                     <th>Whatsapp</th>
                     <th>Tulua</th>
                     <th>Septima</th>
+                    <th>Bulevar</th>
+                    <th>Estacion</th>
                 </tr>
             </thead>
-            <tbody >
+            <tbody>
                 {% for d in data %}
                 <tr>
                     <td>{{d.dia}}</td>
@@ -53,6 +57,7 @@
                     <td>{{d.wp | currency}}</td>
                     <td>{{d.tulua | currency}}</td>
                     <td>{{d.septima | currency}}</td>
+                    <td>{{d.bulevar | currency}}</td>
                 </tr>
                 {%endfor%}
             </tbody>
@@ -74,11 +79,12 @@
                     <td>{{totals.wp | currency}}</td>
                     <td>{{totals.tulua | currency}}</td>
                     <td>{{totals.septima | currency}}</td>
+                    <td>{{totals.bulevar | currency}}</td>
+                    <td>{{totals.estacion | currency}}</td>
                 </tr>
             </tfoot>
         </table>
     </div>
 </div>
-     
-{% endblock %}
 
+{% endblock %}

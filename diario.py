@@ -1,5 +1,26 @@
 class VentasDiarias:
-    def __init__(self, dia, diasemana, ecommerce, llano, cafam, plazaamericas, unicentropalmira, plazacentral, almacen, outlet, obelisco, pasto, outletbog, carpa, wp, tulua, septima):
+    def __init__(
+        self,
+        dia,
+        diasemana,
+        ecommerce,
+        llano,
+        cafam,
+        plazaamericas,
+        unicentropalmira,
+        plazacentral,
+        almacen,
+        outlet,
+        obelisco,
+        pasto,
+        outletbog,
+        carpa,
+        wp,
+        tulua,
+        septima,
+        bulevar,
+        estacion,
+    ):
         self.dia = dia
         self.diasemana = diasemana
         self.ecommerce = ecommerce
@@ -17,10 +38,31 @@ class VentasDiarias:
         self.wp = wp
         self.tulua = tulua
         self.septima = septima
+        self.bulevar = bulevar
+        self.estacion = estacion
 
 
 class Totales:
-    def __init__(self, ecommerce=0, llano=0, cafam=0, plazaamericas=0, unicentropalmira=0, plazacentral=0, almacen=0, outlet=0, obelisco=0, pasto=0, outletbog=0, carpa=0, wp=0, tulua=0, septima=0):
+    def __init__(
+        self,
+        ecommerce=0,
+        llano=0,
+        cafam=0,
+        plazaamericas=0,
+        unicentropalmira=0,
+        plazacentral=0,
+        almacen=0,
+        outlet=0,
+        obelisco=0,
+        pasto=0,
+        outletbog=0,
+        carpa=0,
+        wp=0,
+        tulua=0,
+        septima=0,
+        bulevar=0,
+        estacion=0,
+    ):
         self.ecommerce = ecommerce
         self.llano = llano
         self.cafam = cafam
@@ -36,3 +78,5 @@ class Totales:
         self.wp = wp
         self.tulua = tulua
         self.septima = septima
+        self.bulevar = bulevar
+        self.estacion = estacion
